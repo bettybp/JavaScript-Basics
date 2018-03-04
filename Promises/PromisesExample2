@@ -31,7 +31,7 @@ async function showOff(phone) {
 // call our promise
 async function askMom() {
     try {
-        //Whenever you need to call a promise, you prepend with await
+        //Whenever you need to call a promise, you prepend with await.
         let phone = await willIGetNewPhone;
         let message = await showOff(phone);
         console.log(message);
