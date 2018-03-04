@@ -1,0 +1,44 @@
+let willGetNewPhone = new Promise(function(resolve,reject){
+    if(true){
+        let phone= {
+            brand: 'samsung',
+            model: 'G23'
+        };
+        resolve(phone);
+    }
+    else {
+        let reason = new Error('Mom is not happy');
+        reject(reason);
+    }
+});
+
+//another promise
+// let showOff = function (phone) {
+//     return new Promise(function(resolve,reject){
+//         let message = 'Hey friend, I have a new ' +
+//             phone.brand + ' ' + phone.model + ' phone';
+//
+//         resolve(message);
+//     });
+// };
+//shorter version
+let showOff = function(phone){
+    "use strict";
+    let message = 'Hey friend, I have a new ' +
+        phone.brand + ' ' + phone.model + ' phone';
+    return Promise.resolve(message);
+};
+
+//consume the promise
+let askMom = function(){
+    willGetNewPhone
+        .then(showOff)
+        .then(function(fulfilled){
+            console.log(fulfilled);
+        })
+        .catch(function(error){
+            console.log(error.message);
+        });
+};
+
+askMom();
