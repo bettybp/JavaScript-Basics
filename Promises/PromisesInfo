@@ -1,1 +1,3 @@
 Anything that need to wait for promise to proceed, you put that in .then(..)
+Promises help us to escape the callback hell.
+Callback is just a function you call when you get the return result.
