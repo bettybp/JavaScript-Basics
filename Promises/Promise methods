@@ -1,0 +1,52 @@
+//The Promise.race(iterable) method returns a promise that resolves or rejects as soon as one of the promises in 
+//the iterable resolves or rejects, with the value or reason from that promise.
+var promise1 = new Promise(function(resolve, reject) {
+    setTimeout(resolve, 500, 'one');
+});
+
+var promise2 = new Promise(function(resolve, reject) {
+    setTimeout(resolve, 100, 'two');
+});
+
+Promise.race([promise1, promise2]).then(function(value) {
+  console.log(value);
+  // Both resolve, but promise2 is faster
+});
+
+//The Promise.all(iterable) method returns a single Promise that resolves when all of the promises in the iterable argument
+//have resolved or when the iterable argument contains no promises. 
+//It rejects with the reason of the first promise that rejects.
+
+var promise1 = Promise.resolve(3);
+var promise2 = 42;
+var promise3 = new Promise(function(resolve, reject) {
+  setTimeout(resolve, 100, 'foo');
+});
+
+Promise.all([promise1, promise2, promise3]).then(function(values) {
+  console.log(values);
+});
+
+//if one of the promise is rejected it will print the msg of the rejected one
+
+var p1 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 1000, 'one');
+  });
+  var p2 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 2000, 'two');
+  });
+  var p3 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 3000, 'three');
+  });
+  var p4 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 4000, 'four');
+  });
+  var p5 = new Promise((resolve, reject) => {
+    setTimeout(reject, 990, 'reject for reason');
+  });
+  
+  Promise.all([p1, p2, p3, p4, p5]).then(values => { 
+    console.log(values);
+  }, reason => {
+    console.log(reason) // reject for reason
+  });
