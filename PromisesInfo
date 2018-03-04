@@ -1,0 +1,1 @@
+ Anything that need to wait for promise to proceed, you put that in .then(...)
