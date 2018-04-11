@@ -1,0 +1,34 @@
+//mixin is a class that contains methods for use by other classes
+//without having to be the parent class of those other classes
+//for multiple inheritance
+
+let sayMixin = {
+  say(phrase) {
+    alert(phrase);
+  }
+};
+
+let sayHiMixin = {
+  __proto__: sayMixin,
+
+  sayHi() {
+    // call parent method
+    //looks for the method in the prototype of that mixin, not the class
+    super.say(`Hello ${this.name}`);
+  },
+  sayBye() {
+    super.say(`Bye ${this.name}`);
+  }
+};
+
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+// copy the methods
+Object.assign(User.prototype, sayHiMixin);
+
+// now User can say hi
+new User("Dude").sayHi(); // Hello Dude!
