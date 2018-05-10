@@ -1,2 +1,2 @@
-# JavaScript-Basics
+# JavaScript-Adv
 Examples JS
